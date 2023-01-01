@@ -55,20 +55,27 @@ const Counter = () => (
 ### Pseudo transformed code
 
 ```jsx
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useReducer } from 'react';
 import { snapshot, subscribe } from 'valtio';
 
 const Counter = () => {
-  const [value, setValue] = useState(() => snapshot(state).count);
+  const rerender = useReducer((c) => c + 1, 0);
   useEffect(() => {
+    let lastValue;
     const unsubscribe = subscribe(() => {
-      setValue(snapshot(state).count);
+      const nextValue = snapshot(state).count;
+      if (lastValue !== nextValue) {
+        lastValue = nextValue;
+        rerender();
+      }
     });
     return unsubscribe;
   }, []);
   return (
     <div>
-      {useMemo(() => 'Count: '), []}{value}{useMemo(() => ` (${Math.random()}) `, [])}
+      {useMemo(() => 'Count: '), []}
+      {snapshot(state).count}
+      {useMemo(() => ` (${Math.random()})`, [])}
     </div>
   );
 };
