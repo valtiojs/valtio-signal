@@ -104,16 +104,31 @@ const createSignal = <T extends object>(
   return [sub, get, set];
 };
 
-const { getSignal, createElement } = createReactSignals(createSignal, use);
+const VALUE_PROP = Symbol();
+
+export const getValueProp = <T extends { value: unknown }>(
+  x: AttachValue<T>,
+): AttachValue<T['value']> => (x as any)[VALUE_PROP];
+
+const { getSignal, createElement } = createReactSignals(
+  createSignal,
+  'value',
+  VALUE_PROP,
+  use,
+);
 
 export { createElement };
+
+type AttachValue<T> = T & { value: T } & {
+  [K in keyof T]: AttachValue<T[K]>;
+};
 
 const defaultScope = {};
 
 export function $<T extends object>(
   proxyObject: T,
   scope?: object,
-): Snapshot<T>;
+): AttachValue<Snapshot<T>>;
 
 export function $<T extends object>(proxyObject: T, scope = defaultScope) {
   return getSignal(proxyObject, scope);
