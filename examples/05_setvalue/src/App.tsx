@@ -6,9 +6,9 @@ import { $ } from 'valtio-signal';
 const state = proxy({ count: 0 });
 
 const inc = () => {
-  const prevCount = ($(state).count as any)();
+  const prevCount = $(state).count.value;
   const nextCount = prevCount + 1;
-  ($(state).count as any)(nextCount);
+  $(state).count.value = nextCount;
 };
 
 const CounterWithSignal = () => {
