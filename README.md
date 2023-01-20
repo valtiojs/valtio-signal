@@ -59,7 +59,7 @@ import { useEffect, useMemo, useReducer } from 'react';
 import { snapshot, subscribe } from 'valtio';
 
 const Counter = () => {
-  const rerender = useReducer((c) => c + 1, 0);
+  const [, rerender] = useReducer((c) => c + 1, 0);
   useEffect(() => {
     let lastValue;
     const unsubscribe = subscribe(() => {
