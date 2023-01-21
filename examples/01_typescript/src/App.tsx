@@ -4,7 +4,7 @@ import { proxy } from 'valtio/vanilla';
 import { useSnapshot } from 'valtio';
 import { $ } from 'valtio-signal';
 
-const state = proxy({ count: 0 });
+const state = proxy({ count: 0, text: 'hello' });
 
 const CounterWithSignal = () => {
   return (
@@ -30,6 +30,14 @@ const Controls = () => {
     <div>
       <button type="button" onClick={() => ++state.count}>
         Increment
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          state.text += '!';
+        }}
+      >
+        Change text
       </button>
     </div>
   );
