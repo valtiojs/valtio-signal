@@ -3,7 +3,6 @@
 import ReactExports from 'react';
 import { snapshot, subscribe } from 'valtio/vanilla';
 import type { INTERNAL_Snapshot as Snapshot } from 'valtio/vanilla';
-import { createProxy, isChanged } from 'proxy-compare';
 import { createReactSignals } from 'create-react-signals';
 
 const use =
@@ -42,58 +41,16 @@ type Subscribe = (callback: () => void) => Unsubscribe;
 type GetValue = () => unknown;
 type SetValue = (path: unknown[], value: unknown) => void;
 
-const EMPTY = Symbol();
-
 const createSignal = <T extends object>(
   proxyObject: T,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  _scope: object,
 ): [Subscribe, GetValue, SetValue] => {
-  const proxyCache = new WeakMap();
-  let snap = EMPTY as unknown | typeof EMPTY;
-  let affected = new WeakMap();
-  const listeners = new Set<() => void>();
-  let unsubscribe: (() => void) | undefined;
-  const addListener = (listener: () => void) => {
-    if (!unsubscribe) {
-      unsubscribe = subscribe(proxyObject, () => {
-        try {
-          const nextSnap = snapshot(proxyObject);
-          if (
-            snap !== EMPTY &&
-            !isChanged(snap, nextSnap, affected, new WeakMap())
-          ) {
-            // not changed
-            return;
-          }
-        } catch (e) {
-          // ignore if a promise or something is thrown
-        }
-        snap = EMPTY;
-        affected = new WeakMap();
-        listeners.forEach((l) => l());
-      });
-    }
-    listeners.add(listener);
-    return () => {
-      listeners.delete(listener);
-      if (!listeners.size && unsubscribe) {
-        unsubscribe();
-        unsubscribe = undefined;
-      }
-    };
-  };
-  const sub: Subscribe = (callback) => addListener(callback);
-  const get: GetValue = () => {
-    if (snap === EMPTY) {
-      snap = snapshot(
-        proxyObject,
-        // HACK this could violate the rule of using `use`.
-        use,
-      );
-    }
-    return createProxy(snap, affected, proxyCache);
-  };
+  const sub: Subscribe = (callback) => subscribe(proxyObject, callback);
+  const get: GetValue = () =>
+    snapshot(
+      proxyObject,
+      // HACK this could violate the rule of using `use`.
+      use,
+    );
   const set: SetValue = (path, value) => {
     let current: any = proxyObject;
     for (let i = 0; i < path.length - 1; ++i) {
@@ -123,13 +80,8 @@ type AttachValue<T> = T & { value: T } & {
   readonly [K in keyof T]: AttachValue<T[K]>;
 };
 
-const defaultScope = {};
+export function $<T extends object>(proxyObject: T): AttachValue<Snapshot<T>>;
 
-export function $<T extends object>(
-  proxyObject: T,
-  scope?: object,
-): AttachValue<Snapshot<T>>;
-
-export function $<T extends object>(proxyObject: T, scope = defaultScope) {
-  return getSignal(proxyObject, scope);
+export function $<T extends object>(proxyObject: T) {
+  return getSignal(proxyObject);
 }
