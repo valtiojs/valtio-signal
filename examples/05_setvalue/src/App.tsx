@@ -15,7 +15,9 @@ const CounterWithSignal = () => {
   return (
     <div>
       <h1>With $(proxy)</h1>
-      Count: {$(state).count} ({Math.random()})
+      <div>
+        Count: {$(state).count}, {$(state).count} ({Math.random()})
+      </div>
     </div>
   );
 };
