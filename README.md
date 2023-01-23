@@ -10,9 +10,9 @@ Another React binding for Valtio proxy state
 ## What it is
 
 To use Valtio proxy state, the official method is `useSnapshot`.
-One could create a custom hook with `subscribe`, `snapshot` and `useState`.
+There's alternative library called [use-valtio](https://github.com/dai-shi/use-valtio).
 
-This library provides the third method.
+This library provides yet another method.
 It follows [jotai-signal](https://github.com/jotai-labs/jotai-signal),
 which is a variant of [@preact/signals-react](https://www.npmjs.com/package/@preact/signals-react).
 
