@@ -1,5 +1,10 @@
 # valtio-signal
 
+[![CI](https://img.shields.io/github/actions/workflow/status/dai-shi/valtio-signal/ci.yml?branch=main)](https://github.com/dai-shi/valtio-signal/actions?query=workflow%3ACI)
+[![npm](https://img.shields.io/npm/v/valtio-signal)](https://www.npmjs.com/package/valtio-signal)
+[![size](https://img.shields.io/bundlephobia/minzip/valtio-signal)](https://bundlephobia.com/result?p=valtio-signal)
+[![discord](https://img.shields.io/discord/627656437971288081)](https://discord.gg/MrQdmzd)
+
 Another React binding for Valtio proxy state
 
 ## What it is
