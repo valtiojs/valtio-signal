@@ -1,7 +1,7 @@
 {
   "name": "valtio-signal",
   "description": "Another React binding for Valtio proxy state",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "author": "Daishi Kato",
   "repository": {
     "type": "git",
