@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Changed
+- fix(jsx-runtime): revert jsxDEV #9
 
 ## [0.4.2] - 2023-02-25
 ### Changed
