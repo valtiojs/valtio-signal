@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Changed
+- update create-react-signals #7
 
 ## [0.4.1] - 2023-01-25
 ### Changed
