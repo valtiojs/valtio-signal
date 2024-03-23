@@ -1,40 +1,9 @@
-/// <reference types="react/experimental" />
+/// <reference types="react/canary" />
 
 import ReactExports from 'react';
 import { snapshot, subscribe } from 'valtio/vanilla';
-import type { INTERNAL_Snapshot as Snapshot } from 'valtio/vanilla';
+import type { Snapshot } from 'valtio/vanilla';
 import { createReactSignals } from 'create-react-signals';
-
-const use =
-  ReactExports.use ||
-  (<T>(
-    promise: Promise<T> & {
-      status?: 'pending' | 'fulfilled' | 'rejected';
-      value?: T;
-      reason?: unknown;
-    },
-  ): T => {
-    if (promise.status === 'pending') {
-      throw promise;
-    } else if (promise.status === 'fulfilled') {
-      return promise.value as T;
-    } else if (promise.status === 'rejected') {
-      throw promise.reason;
-    } else {
-      promise.status = 'pending';
-      promise.then(
-        (v) => {
-          promise.status = 'fulfilled';
-          promise.value = v;
-        },
-        (e) => {
-          promise.status = 'rejected';
-          promise.reason = e;
-        },
-      );
-      throw promise;
-    }
-  });
 
 type Unsubscribe = () => void;
 type Subscribe = (callback: () => void) => Unsubscribe;
@@ -45,12 +14,7 @@ const createSignal = <T extends object>(
   proxyObject: T,
 ): [Subscribe, GetValue, SetValue] => {
   const sub: Subscribe = (callback) => subscribe(proxyObject, callback);
-  const get: GetValue = () =>
-    snapshot(
-      proxyObject,
-      // HACK this could violate the rule of using `use`.
-      use,
-    );
+  const get: GetValue = () => snapshot(proxyObject);
   const set: SetValue = (path, value) => {
     let current: any = proxyObject;
     for (let i = 0; i < path.length - 1; ++i) {
@@ -72,7 +36,6 @@ const { getSignal, inject } = createReactSignals(
   true,
   'value',
   VALUE_PROP,
-  use,
 );
 
 export const createElement = inject(ReactExports.createElement);

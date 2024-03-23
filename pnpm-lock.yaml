@@ -7,7 +7,7 @@ settings:
 dependencies:
   create-react-signals:
     specifier: 0.7.0
-    version: 0.7.0(react@18.2.0)
+    version: 0.7.0(react@18.3.0-canary-670811593-20240322)
 
 devDependencies:
   '@types/jest':
@@ -28,6 +28,9 @@ devDependencies:
   '@typescript-eslint/parser':
     specifier: ^7.3.1
     version: 7.3.1(eslint@8.57.0)(typescript@5.4.3)
+  derive-valtio:
+    specifier: ^0.1.0
+    version: 0.1.0(valtio@2.0.0-beta.2)
   eslint:
     specifier: ^8.57.0
     version: 8.57.0
@@ -68,11 +71,11 @@ devDependencies:
     specifier: ^3.2.5
     version: 3.2.5
   react:
-    specifier: ^18.2.0
-    version: 18.2.0
+    specifier: ^18.3.0-canary-670811593-20240322
+    version: 18.3.0-canary-670811593-20240322
   react-dom:
-    specifier: ^18.2.0
-    version: 18.2.0(react@18.2.0)
+    specifier: ^18.3.0-canary-670811593-20240322
+    version: 18.3.0-canary-670811593-20240322(react@18.3.0-canary-670811593-20240322)
   ts-jest:
     specifier: ^29.1.2
     version: 29.1.2(@babel/core@7.24.3)(jest@29.7.0)(typescript@5.4.3)
@@ -83,8 +86,8 @@ devDependencies:
     specifier: ^5.4.3
     version: 5.4.3
   valtio:
-    specifier: ^1.13.2
-    version: 1.13.2(@types/react@18.2.69)(react@18.2.0)
+    specifier: ^2.0.0-beta.2
+    version: 2.0.0-beta.2(@types/react@18.2.69)(react@18.3.0-canary-670811593-20240322)
   webpack:
     specifier: ^5.91.0
     version: 5.91.0(webpack-cli@5.1.4)
@@ -3370,12 +3373,12 @@ packages:
       - ts-node
     dev: true
 
-  /create-react-signals@0.7.0(react@18.2.0):
+  /create-react-signals@0.7.0(react@18.3.0-canary-670811593-20240322):
     resolution: {integrity: sha512-DZmZTMExl9nyX/5PUTsPxw7w9HuI538h5ppxp85JXs/SMgABqDGJ5dVtuM0MLDVWyUmJZMx92f8QTnn3fP7yig==}
     peerDependencies:
       react: '>=17.0.0'
     dependencies:
-      react: 18.2.0
+      react: 18.3.0-canary-670811593-20240322
     dev: false
 
   /cross-spawn@6.0.5:
@@ -3685,12 +3688,12 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /derive-valtio@0.1.0(valtio@1.13.2):
+  /derive-valtio@0.1.0(valtio@2.0.0-beta.2):
     resolution: {integrity: sha512-OCg2UsLbXK7GmmpzMXhYkdO64vhJ1ROUUGaTFyHjVwEdMEcTTRj7W1TxLbSBxdY8QLBPCcp66MTyaSy0RpO17A==}
     peerDependencies:
       valtio: '*'
     dependencies:
-      valtio: 1.13.2(@types/react@18.2.69)(react@18.2.0)
+      valtio: 2.0.0-beta.2(@types/react@18.2.69)(react@18.3.0-canary-670811593-20240322)
     dev: true
 
   /destroy@1.2.0:
@@ -5947,6 +5950,7 @@ packages:
 
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
+    dev: true
 
   /js-yaml@3.14.1:
     resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
@@ -6194,6 +6198,7 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+    dev: true
 
   /lower-case@2.0.2:
     resolution: {integrity: sha512-7fm3l3NAF9WfN6W3JOmf5drwpVqX78JtoGJ3A6W0a6ZnldM41w2fV5D490psKFTpMds8TJse/eHLFFsNHHjHgg==}
@@ -7385,14 +7390,13 @@ packages:
       unpipe: 1.0.0
     dev: true
 
-  /react-dom@18.2.0(react@18.2.0):
-    resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
+  /react-dom@18.3.0-canary-670811593-20240322(react@18.3.0-canary-670811593-20240322):
+    resolution: {integrity: sha512-AHxCnyDzZueXIHY4WA2Uba1yaL7/vbjhO3D3TWPQeruKD5MwgD0/xExZi0T104gBr6Thv6MEsLSxFjBAHhHKKg==}
     peerDependencies:
-      react: ^18.2.0
+      react: 18.3.0-canary-670811593-20240322
     dependencies:
-      loose-envify: 1.4.0
-      react: 18.2.0
-      scheduler: 0.23.0
+      react: 18.3.0-canary-670811593-20240322
+      scheduler: 0.24.0-canary-670811593-20240322
     dev: true
 
   /react-is@16.13.1:
@@ -7403,11 +7407,9 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react@18.2.0:
-    resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
+  /react@18.3.0-canary-670811593-20240322:
+    resolution: {integrity: sha512-EI6+q3tOT+0z4OkB2sz842Ra/n/yz7b3jOJhSK1HQwi4Ng29VJzLGngWmSuxQ94YfdE3EBhpUKDfgNgzoKM9Vg==}
     engines: {node: '>=0.10.0'}
-    dependencies:
-      loose-envify: 1.4.0
 
   /read-pkg@3.0.0:
     resolution: {integrity: sha512-BLq/cCO9two+lBgiTYNqD6GdtK8s4NpaWrl6/rCO9w0TUS8oJl7cmToOZfRYllKTISY6nt1U7jQ53brmKqY6BA==}
@@ -7760,10 +7762,8 @@ packages:
       xmlchars: 2.2.0
     dev: true
 
-  /scheduler@0.23.0:
-    resolution: {integrity: sha512-CtuThmgHNg7zIZWAXi3AsyIzA3n4xx7aNyjwC2VJldO2LMVDhFK+63xGqq6CsJH4rTAt6/M+N4GhZiDYPx9eUw==}
-    dependencies:
-      loose-envify: 1.4.0
+  /scheduler@0.24.0-canary-670811593-20240322:
+    resolution: {integrity: sha512-IGX6Fq969h1L0X7jV0sJ/EdI4fr+mRetbBNJl55nn+/RsCuQSVwgKnZG6Q3NByixDNbkRI8nRmWuhOm8NQowGQ==}
     dev: true
 
   /schema-utils@3.3.0:
@@ -8629,14 +8629,6 @@ packages:
       requires-port: 1.0.0
     dev: true
 
-  /use-sync-external-store@1.2.0(react@18.2.0):
-    resolution: {integrity: sha512-eEgnFxGQ1Ife9bzYs6VLi8/4X6CObHMw9Qr9tPY43iKwsPw8xE8+EFsf/2cFZ5S3esXgpWgtSCtLNS41F+sKPA==}
-    peerDependencies:
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    dependencies:
-      react: 18.2.0
-    dev: true
-
   /util-deprecate@1.0.2:
     resolution: {integrity: sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw==}
     dev: true
@@ -8671,12 +8663,12 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /valtio@1.13.2(@types/react@18.2.69)(react@18.2.0):
-    resolution: {integrity: sha512-Qik0o+DSy741TmkqmRfjq+0xpZBXi/Y6+fXZLn0xNF1z/waFMbE3rkivv5Zcf9RrMUp6zswf2J7sbh2KBlba5A==}
+  /valtio@2.0.0-beta.2(@types/react@18.2.69)(react@18.3.0-canary-670811593-20240322):
+    resolution: {integrity: sha512-/rELrtz+yqCBPZV/XQFg5ziV27XV/9Bx7xRXP73pacKn9lXGFRL6Ivp/AYIziim3Qm+wIB0PXdUhnm+4rE7rWA==}
     engines: {node: '>=12.20.0'}
     peerDependencies:
-      '@types/react': '>=16.8'
-      react: '>=16.8'
+      '@types/react': '>=18.0'
+      react: '>=18.0'
     peerDependenciesMeta:
       '@types/react':
         optional: true
@@ -8684,10 +8676,8 @@ packages:
         optional: true
     dependencies:
       '@types/react': 18.2.69
-      derive-valtio: 0.1.0(valtio@1.13.2)
       proxy-compare: 2.6.0
-      react: 18.2.0
-      use-sync-external-store: 1.2.0(react@18.2.0)
+      react: 18.3.0-canary-670811593-20240322
     dev: true
 
   /vary@1.1.2:

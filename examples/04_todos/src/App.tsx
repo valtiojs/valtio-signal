@@ -3,7 +3,7 @@
 import { memo } from 'react';
 import type { FormEvent } from 'react';
 import { proxy } from 'valtio/vanilla';
-import { derive } from 'valtio/utils';
+import { derive } from 'derive-valtio';
 import { useSnapshot } from 'valtio';
 import { $ } from 'valtio-signal';
 
