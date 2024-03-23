@@ -1,7 +1,7 @@
 /** @jsxImportSource valtio-signal */
 
 import { proxy } from 'valtio/vanilla';
-import { useSnapshot } from 'valtio';
+import { useSnapshot } from 'valtio/react';
 import { $ } from 'valtio-signal';
 
 const state = proxy({ count: 0 });

@@ -3,7 +3,7 @@
 
 import { Suspense } from 'react';
 import { proxy } from 'valtio/vanilla';
-import { useSnapshot } from 'valtio';
+import { useSnapshot } from 'valtio/react';
 import { $ } from 'valtio-signal';
 
 const fetchUser = async (id: number) => {

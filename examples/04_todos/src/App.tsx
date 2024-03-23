@@ -3,8 +3,8 @@
 import { memo } from 'react';
 import type { FormEvent } from 'react';
 import { proxy } from 'valtio/vanilla';
+import { useSnapshot } from 'valtio/react';
 import { derive } from 'derive-valtio';
-import { useSnapshot } from 'valtio';
 import { $ } from 'valtio-signal';
 
 const createRandomColor = () => `hsl(${Math.random() * 360}deg,100%,50%)`;
