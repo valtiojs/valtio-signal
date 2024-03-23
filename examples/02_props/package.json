@@ -5,11 +5,11 @@
   "dependencies": {
     "@types/react": "latest",
     "@types/react-dom": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "canary",
+    "react-dom": "canary",
     "react-scripts": "latest",
     "typescript": "latest",
-    "valtio": "latest",
+    "valtio": "next",
     "valtio-signal": "latest"
   },
   "scripts": {
