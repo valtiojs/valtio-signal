@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Added
+- migrate to valtio v2-beta #10
 
 ## [0.4.3] - 2023-02-26
 ### Changed
