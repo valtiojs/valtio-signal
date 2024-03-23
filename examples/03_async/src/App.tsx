@@ -1,3 +1,4 @@
+/// <reference types="react/experimental" />
 /** @jsxImportSource valtio-signal */
 
 import { Suspense } from 'react';
