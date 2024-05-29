@@ -33,11 +33,7 @@ setInterval(() => {
   ++state.count;
 }, 100);
 
-const Counter = () => (
-  <div>
-    Count: {$(state).count}
-  </div>
-);
+const Counter = () => <div>Count: {$(state).count}</div>;
 ```
 
 ## How it works
@@ -78,7 +74,7 @@ const Counter = () => {
   }, []);
   return (
     <div>
-      {useMemo(() => 'Count: '), []}
+      {(useMemo(() => 'Count: '), [])}
       {snapshot(state).count}
       {useMemo(() => ` (${Math.random()})`, [])}
     </div>

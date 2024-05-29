@@ -1,21 +1,19 @@
 {
   "compilerOptions": {
     "strict": true,
-    "target": "esnext",
-    "downlevelIteration": true,
+    "target": "es2018",
     "esModuleInterop": true,
-    "module": "es2015",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "skipLibCheck": true,
     "allowJs": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "verbatimModuleSyntax": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "valtio-signal": ["./src"],
-      "valtio-signal/jsx-runtime": ["./src/jsx-runtime"]
+      "valtio-signal": ["./src/index.js"]
     }
-  }
+  },
+  "exclude": ["dist", "examples"]
 }

@@ -2,58 +2,69 @@
   "name": "valtio-signal",
   "description": "Another React binding for Valtio proxy state",
   "version": "0.5.0",
+  "type": "module",
   "author": "Daishi Kato",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dai-shi/valtio-signal.git"
+    "url": "https://github.com/valtiojs/valtio-signal.git"
   },
   "source": "./src/index.ts",
-  "main": "./dist/index.umd.js",
-  "module": "./dist/index.modern.js",
-  "types": "./dist/src/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "types": "./dist/src/index.d.ts",
-      "import": "./dist/index.modern.mjs",
-      "default": "./dist/index.umd.js"
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.js"
+      },
+      "default": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
     },
     "./jsx-runtime": {
-      "types": "./dist/src/jsx-runtime.d.ts",
-      "import": "./dist/jsx-runtime/index.modern.mjs",
-      "default": "./dist/jsx-runtime/index.umd.js"
+      "require": {
+        "types": "./dist/cjs/jsx-runtime.d.ts",
+        "default": "./dist/cjs/jsx-runtime.js"
+      },
+      "default": {
+        "types": "./dist/jsx-runtime.d.ts",
+        "default": "./dist/jsx-runtime.js"
+      }
     },
     "./jsx-dev-runtime": {
-      "types": "./dist/src/jsx-runtime.d.ts",
-      "import": "./dist/jsx-runtime/index.modern.mjs",
-      "default": "./dist/jsx-runtime/index.umd.js"
+      "require": {
+        "types": "./dist/cjs/jsx-dev-runtime.d.ts",
+        "default": "./dist/cjs/jsx-dev-runtime.js"
+      },
+      "default": {
+        "types": "./dist/jsx-dev-runtime.d.ts",
+        "default": "./dist/jsx-dev-runtime.js"
+      }
     }
   },
   "sideEffects": false,
   "files": [
     "src",
-    "dist",
-    "jsx-runtime.d.ts"
+    "dist"
   ],
+  "packageManager": "pnpm@8.15.0",
   "scripts": {
-    "compile": "run-s compile:index compile:jsx-runtime",
-    "compile:index": "microbundle build -f modern,umd --globals react=React",
-    "postcompile:index": "cp dist/index.modern.mjs dist/index.modern.js && cp dist/index.modern.mjs.map dist/index.modern.js.map",
-    "compile:jsx-runtime": "microbundle build src/jsx-runtime.ts -o dist/jsx-runtime/index.js --external valtio-signal -f modern,umd --globals react=React",
-    "postcompile:jsx-runtime": "cp dist/jsx-runtime/index.modern.mjs dist/jsx-runtime/index.modern.js && cp dist/jsx-runtime/index.modern.mjs.map dist/jsx-runtime/index.modern.js.map && cp dist/src/jsx-runtime.d.ts jsx-runtime.d.ts",
-    "test": "run-s eslint tsc-test jest",
-    "eslint": "eslint --ext .js,.ts,.tsx .",
-    "jest": "jest",
-    "tsc-test": "tsc --project . --noEmit",
-    "examples:01_typescript": "DIR=01_typescript EXT=tsx webpack serve",
-    "examples:02_props": "DIR=02_props EXT=tsx webpack serve",
-    "examples:03_async": "DIR=03_async EXT=tsx webpack serve",
-    "examples:04_todos": "DIR=04_todos EXT=tsx webpack serve",
-    "examples:05_setvalue": "DIR=05_setvalue EXT=tsx webpack serve"
-  },
-  "jest": {
-    "testEnvironment": "jsdom",
-    "preset": "ts-jest/presets/js-with-ts"
+    "compile": "rm -rf dist && pnpm run '/^compile:.*/'",
+    "compile:esm": "tsc -p tsconfig.esm.json",
+    "compile:cjs": "tsc -p tsconfig.cjs.json && echo '{\"type\":\"commonjs\"}' > dist/cjs/package.json",
+    "test": "pnpm run '/^test:.*/'",
+    "test:format": "prettier -c .",
+    "test:lint": "eslint .",
+    "test:types": "tsc -p . --noEmit",
+    "test:types:examples": "tsc -p examples --noEmit",
+    "test:spec": "vitest run",
+    "examples:01_counter": "DIR=01_counter vite",
+    "examples:02_props": "DIR=02_props vite",
+    "examples:03_async": "DIR=03_async vite",
+    "examples:04_todos": "DIR=04_todos vite",
+    "examples:05_setvalue": "DIR=05_setvalue vite"
   },
   "keywords": [
     "valtio",
@@ -61,42 +72,42 @@
     "signal"
   ],
   "license": "MIT",
+  "prettier": {
+    "singleQuote": true
+  },
   "dependencies": {
-    "create-react-signals": "0.7.0"
+    "create-react-signals": "^0.8.0"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.30",
-    "@types/react": "^18.2.69",
-    "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.3.1",
-    "@typescript-eslint/parser": "^7.3.1",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.11.0",
+    "@typescript-eslint/parser": "^7.11.0",
     "derive-valtio": "^0.1.0",
     "eslint": "^8.57.0",
-    "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^6.8.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react": "^7.34.1",
-    "html-webpack-plugin": "^5.6.0",
-    "jest": "^29.7.0",
-    "jest-environment-jsdom": "^29.7.0",
-    "microbundle": "^0.15.1",
-    "npm-run-all": "^4.1.5",
+    "eslint-plugin-react": "^7.34.2",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "happy-dom": "^14.11.4",
     "prettier": "^3.2.5",
-    "react": "^18.3.0-canary-670811593-20240322",
-    "react-dom": "^18.3.0-canary-670811593-20240322",
-    "ts-jest": "^29.1.2",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.4.3",
-    "valtio": "^2.0.0-beta.2",
-    "webpack": "^5.91.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4"
+    "react": "^19.0.0-rc-6f23540c7d-20240528",
+    "react-dom": "^19.0.0-rc-6f23540c7d-20240528",
+    "ts-expect": "^1.3.0",
+    "typescript": "^5.4.5",
+    "valtio": "^2.0.0-rc.0",
+    "valtio-signal": "link:.",
+    "vite": "^5.2.12",
+    "vitest": "^1.6.0"
   },
   "peerDependencies": {
-    "react": "*",
-    "valtio": ">=2.0.0-beta.1"
+    "react": ">=18.0.0",
+    "valtio": ">=2.0.0-rc.0"
   }
 }
