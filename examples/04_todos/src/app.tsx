@@ -39,7 +39,7 @@ type TodoItemProps = {
   remove: RemoveFn;
 };
 
-const TodoItem = memo(({ todo, remove }: TodoItemProps) => {
+const TodoItem = memo(function TodoItem({ todo, remove }: TodoItemProps) {
   const toggleCompleted = () => {
     todo.completed = !todo.completed;
   };

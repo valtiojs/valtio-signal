@@ -16,6 +16,7 @@ const createSignal = <T extends object>(
   const sub: Subscribe = (callback) => subscribe(proxyObject, callback);
   const get: GetValue = () => snapshot(proxyObject);
   const set: SetValue = (path, value) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     let current: any = proxyObject;
     for (let i = 0; i < path.length - 1; ++i) {
       current = current[path[i] as string | symbol];
@@ -29,6 +30,7 @@ const VALUE_PROP = Symbol();
 
 export const getValueProp = <T extends { value: unknown }>(
   x: AttachValue<T>,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
 ): AttachValue<T['value']> => (x as any)[VALUE_PROP];
 
 const { getSignal, inject } = createReactSignals(
@@ -38,6 +40,7 @@ const { getSignal, inject } = createReactSignals(
   VALUE_PROP,
 );
 
+// eslint-disable-next-line import/no-named-as-default-member
 export const createElement = inject(ReactExports.createElement);
 
 type AttachValue<T> = T & { value: T } & {
