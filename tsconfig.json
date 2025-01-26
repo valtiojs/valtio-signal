@@ -12,8 +12,8 @@
     "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
-      "valtio-signal": ["./src/index.js"],
-      "valtio-signal/jsx-runtime": ["./src/jsx-runtime.js"]
+      "valtio-signal": ["./src/index.ts"],
+      "valtio-signal/jsx-runtime": ["./src/jsx-runtime.ts"]
     }
   },
   "exclude": ["dist", "examples"]
