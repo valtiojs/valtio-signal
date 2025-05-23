@@ -41,7 +41,7 @@ type TodoItemProps = {
 
 const TodoItem = memo(function TodoItem({ todo, remove }: TodoItemProps) {
   const toggleCompleted = () => {
-    // eslint-disable-next-line react-compiler/react-compiler
+    // eslint-disable-next-line react-hooks/react-compiler
     todo.completed = !todo.completed;
   };
   return (
